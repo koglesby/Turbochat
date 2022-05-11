@@ -15,6 +15,8 @@
     <%= render 'layouts/new_room_form' %>
     </div>
     <div id="room_container" class="col-md-8 col-sm-8 bg-dark text-light">
-      text
+      <% if @current_room %>
+        <h4 class="text-center"><%= @current_room.name %></h4>
+      <% end %>
     </div>
 </div>
