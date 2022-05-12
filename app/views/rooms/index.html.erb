@@ -8,15 +8,23 @@
     </div>
     
     <h4> Rooms </h4>
+    <%= render 'layouts/new_room_form' %>
     <%= turbo_stream_from "rooms" %>
     <div id="rooms">
     <%= render @rooms %>
     </div>
-    <%= render 'layouts/new_room_form' %>
+    
     </div>
     <div id="room_container" class="col-md-8 col-sm-8 bg-dark text-light">
       <% if @current_room %>
-        <h4 class="text-center"><%= @current_room.name %></h4>
+      <div is="current_room">
+        <h4 class="text-center"><%= @user&.email || @current_room.name %></h4>
+        <%= turbo_stream_from @current_room %>
+        <div id="messages">
+          <%= render @messages %>
+        </div>
+        <%= render 'layouts/new_message_form' %>
+      </div>
       <% end %>
     </div>
 </div>
