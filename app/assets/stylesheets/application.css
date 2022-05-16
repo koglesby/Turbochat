@@ -23,8 +23,8 @@ body {
 }
 #current_room {
     height: calc(100vh - 150px);
-    overflow-x: hidden;
-    overflow-y: scroll;
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
 }
 #messages {
     height: calc(100vh - 150px);
@@ -46,7 +46,7 @@ body {
     height: 100vh;
     margin-right: 0px !important;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 .msg-content {
     width: 80%;
