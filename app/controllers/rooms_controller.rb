@@ -6,6 +6,7 @@ class RoomsController < ApplicationController
     @rooms = Room.public_rooms
     
     @users = User.all_except(current_user)
+    render 'index'
   end
 
   def show
@@ -22,6 +23,6 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create(name: params["room"]["name"])
+    @room = Room.create(name: params['room']['name'])
   end
 end
