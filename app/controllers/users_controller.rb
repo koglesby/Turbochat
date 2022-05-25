@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @rooms = Room.public_rooms
     @room_name = get_name(@user, current_user)
     @current_room = Room.where(name: @room_name).first || Room.create_private_room([@user, current_user], @room_name)
-    
+
     @message = Message.new
     @messages = @current_room.messages.order(created_at: :asc)
     render 'rooms/index'

@@ -1,10 +1,10 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @room = Room.new
     @rooms = Room.public_rooms
-    
+
     @users = User.all_except(current_user)
     render 'index'
   end
@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
 
     @message = Message.new
     @messages = @current_room.messages.order(created_at: :asc)
-    
+
     @users = User.all_except(current_user)
     render 'index'
   end
