@@ -30,7 +30,7 @@ class User < ApplicationRecord
     when 'online'
       'bg-success'
     when 'away'
-      'bq-warning'
+      'bg-warning'
     when 'offline'
       'bg-dark'
     else
