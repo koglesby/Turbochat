@@ -34,7 +34,7 @@ class User < ApplicationRecord
     when 'offline'
       'bg-dark'
     else
-      'bq-dark'
+      'bg-dark'
     end
   end
 
