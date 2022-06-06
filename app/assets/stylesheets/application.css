@@ -23,7 +23,7 @@ body {
   padding: 10px;
 }
 
-#single_room {
+#current_room {
   height: calc(100vh - 150px);
 }
 

@@ -28,7 +28,7 @@
   </div>
   <div id="room_container" class="col-md-8 col-sm-8 bg-dark text-light">
     <% if @current_room %>
-      <div is="current_room">
+      <div id="current_room">
         <h4 class="text-center"><%= @user&.email || @current_room.name %></h4>
         <%= turbo_stream_from @current_room %>
         <div id="messages" data-controller="scroll">
