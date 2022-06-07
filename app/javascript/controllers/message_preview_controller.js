@@ -53,24 +53,44 @@ export default class extends Controller {
   constructPreviews(file, reader) {
     let element;
     let cancelFunction = (e) => this.removePreview(e);
-    switch (file.type) {
-      case 'image/jpeg':
-      case 'image/png':
-      case 'image/gif':
-        element = this.createImageElement(cancelFunction, reader);
-        break;
-      case 'video/mp4':
-      case 'video/quicktime':
-        element = this.createVideoElement(cancelFunction);
-        break;
-      case 'audio/mpeg':
-      case 'audio/mp3':
-      case 'audio/wav':
-        element = this.createAudioElement(cancelFunction);
-        break;
-      default:
-        element = this.createDefaultElement(cancelFunction);
-    }
+    // switch (file.type) {
+    //   case 'image/jpeg':
+    //   case 'image/png':
+    //   case 'image/gif':
+    //     element = this.createImageElement(cancelFunction, reader);
+    //     break;
+    //   case 'video/mp4':
+    //   case 'video/quicktime':
+    //     element = this.createVideoElement(cancelFunction);
+    //     break;
+    //   case 'audio/mpeg':
+    //   case 'audio/mp3':
+    //   case 'audio/wav':
+    //     element = this.createAudioElement(cancelFunction);
+    //     break;
+    //   default:
+    //     element = this.createDefaultElement(cancelFunction);
+    // }
+    // element.dataset.filename = file.name;
+    // return element;
+
+    const CREATE_IMAGE_EL = this.createImageElement(cancelFunction, reader);
+    const CREATE_VIDEO_EL = this.createVideoElement(cancelFunction);
+    const CREATE_AUDIO_EL = this.createAudioElement(cancelFunction);
+
+    const fileTypeMap = {
+      'image/jpeg': CREATE_IMAGE_EL,
+      'image/png': CREATE_IMAGE_EL,
+      'image/gif': CREATE_IMAGE_EL,
+      'video/mp4': CREATE_VIDEO_EL,
+      'video/quicktime': CREATE_VIDEO_EL,
+      'audio/mpeg': CREATE_AUDIO_EL,
+      'audio/mp3': CREATE_AUDIO_EL,
+      'audio/wav': CREATE_AUDIO_EL,
+      default: this.createDefaultElement(cancelFunction),
+    };
+
+    element = fileTypeMap[file.type] || fileTypeMap['default'];
     element.dataset.filename = file.name;
     return element;
   }
@@ -159,7 +179,7 @@ export default class extends Controller {
   removePreview(event) {
     const target = event.target.parentNode.closest('.attachment-preview');
     const dataTransfer = new DataTransfer();
-    let fileInput = document.getElementById('message_attachements');
+    let fileInput = document.getElementById('message_attachments');
     let files = fileInput.files;
     let filesArray = Array.from(files);
 
