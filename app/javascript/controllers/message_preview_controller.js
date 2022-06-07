@@ -159,7 +159,7 @@ export default class extends Controller {
   removePreview(event) {
     const target = event.target.parentNode.closest('.attachment-preview');
     const dataTransfer = new DataTransfer();
-    let fileInput = document.getElementById('message_attachemnts');
+    let fileInput = document.getElementById('message_attachements');
     let files = fileInput.files;
     let filesArray = Array.from(files);
 
