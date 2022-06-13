@@ -80,3 +80,4 @@ group :development, :test do
 end
 
 gem 'htmlbeautifier'
+gem "pagy", "~> 5.10"

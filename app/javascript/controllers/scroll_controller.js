@@ -1,6 +1,10 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
+  initialize() {
+    this.resetScrollWithoutThreshold(messages);
+  }
+
   connect() {
     console.log('connected');
     const messages = document.getElementById('messages');
@@ -14,6 +18,15 @@ export default class extends Controller {
 
   // custom function (not from stimulus)
   resetScroll() {
+    const bottomOfScroll = messages.scrollHeight - messages.clientHeight;
+    const upperScrollThreshold = bottomOfScroll - 500;
+    // Scroll down if not withing the threshold
+    if (messages.scrollTop > upperScrollThreshold) {
+      messages.scrollTop = messages.scrollHeight - messages.clientHeight;
+    }
+  }
+
+  resetScrollWithoutThreshold(messages) {
     messages.scrollTop = messages.scrollHeight - messages.clientHeight;
   }
 }
