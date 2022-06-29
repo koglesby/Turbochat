@@ -15,10 +15,6 @@ module Turbochat
     #   User.update_all(status: User.statuses[:offline])
     # end
 
-    config.active_storage.variant_processor = :mini_magick
-
-    config.assets.initialize_on_precompile = false
-
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
