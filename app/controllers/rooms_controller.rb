@@ -31,6 +31,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.create(name: params['room']['name'])
+    redirect_to @room
   end
 
   def search
@@ -51,7 +52,7 @@ class RoomsController < ApplicationController
   end
 
   def leave
-    @room = Room.find(parmas[:id])
+    @room = Room.find(params[:id])
     current_user.joined_rooms.delete(@room)
     redirect_to rooms_path
   end

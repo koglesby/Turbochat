@@ -1,7 +1,7 @@
 class Room < ApplicationRecord
   validates :name, uniqueness: true
   scope :public_rooms, -> { where(is_private: false) }
-  after_create_commit { broadcast_if_public }
+  # after_create_commit { broadcast_if_public }
   has_many :messages
   has_many :participants, dependent: :destroy
   has_many :joinables, dependent: :destroy
