@@ -6,7 +6,7 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  config.active_storage.variant_processor = :mini_magick
+  # config.active_storage.variant_processor = :mini_magick
 
   host = ENV['DEFAULT_URL_HOST'] || "#{ENV['HEROKU_APP_NAME']}.herokuapp.com"
   protocol = config.force_ssl ? 'https' : 'http'
