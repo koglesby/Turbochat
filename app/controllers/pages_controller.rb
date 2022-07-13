@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   after_action :set_status
-  def home; end
+  def home
+    redirect_to new_user_session_path unless current_user
+  end
 
   private
 
