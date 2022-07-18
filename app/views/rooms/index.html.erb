@@ -24,7 +24,7 @@
     <%= render 'rooms/search_form'%>
     <%= turbo_stream_from "rooms" %>
     <div id="rooms">
-      <%= render @joined_rooms %>
+      <%= render "rooms/rooms", rooms: @joined_rooms, user: current_user %>
     </div>
   </div>
   <div id="room_container" class="col-md-8 col-sm-8 bg-dark text-light">
