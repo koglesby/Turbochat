@@ -79,5 +79,6 @@ group :development, :test do
   gem 'rubocop-rails', require: false
 end
 
+gem 'aws-sdk-s3', require: false
 gem 'htmlbeautifier'
 gem 'pagy', '~> 5.10'
