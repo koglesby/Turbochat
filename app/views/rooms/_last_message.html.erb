@@ -4,7 +4,13 @@
       <em class="last-message">
         <%= "#{last_message.user.email} sent a message".truncate(40) %>
       </em>
-      <em class="last-message"><%= "#{time_ago_in_words(last_message.created_at)} ago" %></em>
+      <%= content_tag(:em, class:"last-message-time",
+        data: {
+          time: last_message.created_at.to_i
+        }
+      ) do %>
+        <em class="last-message"><%= "#{time_ago_in_words(last_message.created_at)} ago" %></em>
+      <% end %>
     </div>
   </div>
 <% end %>
