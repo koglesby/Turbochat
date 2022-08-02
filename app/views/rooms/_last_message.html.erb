@@ -9,7 +9,7 @@
           time: last_message.created_at.to_i
         }
       ) do %>
-        <em class="last-message"><%= "#{time_ago_in_words(last_message.created_at)} ago" %></em>
+        <%= "#{time_ago_in_words(last_message.created_at)} ago" %>
       <% end %>
     </div>
   </div>
