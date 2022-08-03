@@ -11,7 +11,7 @@ consumer.subscriptions.create('AppearanceChannel', {
     console.log('Connected');
     resetFunc = () => this.resetTimer(this.uninstall);
     this.install();
-    window.addEventListener('turbo:load', () => resetTimer());
+    window.addEventListener('turbo:load', () => this.resetTimer());
   },
 
   disconnected() {

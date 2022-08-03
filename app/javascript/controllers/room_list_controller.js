@@ -40,6 +40,7 @@ export default class extends Controller {
 }
 
 function modifyRooms(rooms, sortedList, observer, config) {
+  console.log('MODIFY ROOMS');
   observer.disconnect();
   rooms.innerHTML = '';
   sortedList.forEach((room) => {

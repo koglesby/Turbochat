@@ -2,7 +2,6 @@ class RoomsController < ApplicationController
   include RoomsHelper
   before_action :authenticate_user!
   before_action :set_status
-
   def index
     @room = Room.new
     @joined_rooms = current_user.joined_rooms.order('last_message_at DESC')
@@ -14,8 +13,8 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @current_room = Room.find(params[:id])
-    current_user.update(current_room: @current_room)
+    @single_room = Room.find(params[:id])
+    current_user.update(current_room: @single_room)
 
     @room = Room.new
     @rooms = search_rooms
@@ -23,7 +22,7 @@ class RoomsController < ApplicationController
 
     @message = Message.new
 
-    pagy_messages = @current_room.messages.includes(:user).order(created_at: :desc)
+    pagy_messages = @single_room.messages.includes(:user).order(created_at: :desc)
     @pagy, messages = pagy(pagy_messages, items: 10)
     @messages = messages.reverse
 
@@ -41,7 +40,9 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update('search_results', partial: 'rooms/search_results', locals: { rooms: @rooms })
+          turbo_stream.update('search_results',
+                              partial: 'rooms/search_results',
+                              locals: { rooms: @rooms })
         ]
       end
     end
@@ -62,6 +63,6 @@ class RoomsController < ApplicationController
   private
 
   def set_status
-    current_user&.update!(status: User.statuses[:online])
+    current_user.update!(status: User.statuses[:online]) if current_user
   end
 end

@@ -16,7 +16,7 @@ export default class Debounce extends Controller {
   }
 
   clearParam(input) {
-    if (input.value == '') {
+    if (input.value === '') {
       const baseURL = location.origin + location.pathname;
       window.history.pushState('', '', baseURL);
     }
